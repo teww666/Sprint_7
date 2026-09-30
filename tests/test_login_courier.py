@@ -1,6 +1,7 @@
 import allure
 
-from helpers import login_courier, generate_courier_payload
+from helpers import login_courier
+from generators import generate_courier_payload
 from data import (
     LOGIN_NOT_ENOUGH_DATA_MESSAGE,
     LOGIN_ACCOUNT_NOT_FOUND_MESSAGE

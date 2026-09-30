@@ -1,6 +1,7 @@
 import allure
 
-from helpers import create_courier, get_courier_id, delete_courier, generate_courier_payload
+from helpers import create_courier, get_courier_id, delete_courier
+from generators import generate_courier_payload
 from data import (
     COURIER_CREATED_BODY,
     COURIER_ALREADY_EXISTS_MESSAGE,
@@ -14,14 +15,16 @@ class TestCreateCourier:
 
     @allure.title('Курьера можно создать — код 201 и тело ok: true')
     @allure.description('Проверка успешного создания курьера с валидными данными')
-    def test_create_courier_with_valid_data_returns_201_and_ok_true(self, courier_payload):
-        response = create_courier(courier_payload)
+    def test_create_courier_with_valid_data_returns_201_and_ok_true(self):
+        payload = generate_courier_payload()
+
+        response = create_courier(payload)
 
         assert response.status_code == 201
         assert response.json() == COURIER_CREATED_BODY
 
         # очистка тестовых данных
-        courier_id = get_courier_id(courier_payload['login'], courier_payload['password'])
+        courier_id = get_courier_id(payload['login'], payload['password'])
         delete_courier(courier_id)
 
     @allure.title('Нельзя создать двух одинаковых курьеров — код 409')

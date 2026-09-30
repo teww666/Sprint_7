@@ -1,7 +1,6 @@
 import pytest
 
 from helpers import (
-    generate_courier_payload,
     create_courier,
     get_courier_id,
     delete_courier,
@@ -9,12 +8,7 @@ from helpers import (
     cancel_order
 )
 from data import ORDER_BODY
-
-
-@pytest.fixture
-def courier_payload():
-    """Генерирует уникальные данные курьера для теста."""
-    return generate_courier_payload()
+from generators import generate_courier_payload
 
 
 @pytest.fixture

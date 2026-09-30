@@ -21,10 +21,10 @@ ORDER_BODY = {
     'comment': 'Saske, come back to Konoha'
 }
 
-# Варианты цвета для параметризации создания заказа
-ORDER_COLORS = [
-    (['BLACK'], 'one_color_black'),
-    (['GREY'], 'one_color_grey'),
-    (['BLACK', 'GREY'], 'two_colors'),
-    ([], 'no_color')
+# Готовые тела заказа для параметризации: цвет уже внутри, условий в тесте не нужно
+ORDER_PAYLOADS = [
+    ({**ORDER_BODY, 'color': ['BLACK']}, 'one_color_black'),
+    ({**ORDER_BODY, 'color': ['GREY']}, 'one_color_grey'),
+    ({**ORDER_BODY, 'color': ['BLACK', 'GREY']}, 'two_colors'),
+    (ORDER_BODY, 'no_color')
 ]
